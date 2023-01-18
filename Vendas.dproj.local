@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/10/13 16:50:56.000.743,=C:\Users\konstroi.dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/10/13 16:54:12.000.518,=C:\Users\konstroi.dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/10/13 16:59:06.000.899,=C:\Users\konstroi.dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/10/17 15:39:05.000.240,=C:\Users\konstroi.dev\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/12/16 15:01:45.000.716,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/12/19 09:08:54.000.140,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 12:33:17.000.349,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 12:34:34.212,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 12:37:12.741,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\uPrincipal.dfm=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/01/17 12:37:12.741,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\uPrincipal.pas=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 12:37:27.146,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Vendas.dproj=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/01/17 14:23:19.834,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 14:24:40.425,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\datamodule\uDTMConexao.pas=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/01/17 14:24:40.425,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\datamodule\uDTMConexao.dfm=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
