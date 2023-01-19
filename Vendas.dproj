@@ -114,7 +114,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="cadastro\uCadCategoria.pas">
-            <Form>frmTelaHeranca1</Form>
+            <Form>frmCadCategoria</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

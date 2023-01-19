@@ -16,7 +16,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object pjcPrincipal: TPageControl
+  object pgcPrincipal: TPageControl
     Left = 0
     Top = 0
     Width = 772
@@ -24,10 +24,8 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 432
     object TabSheet1: TTabSheet
       Caption = 'Listagem'
-      ExplicitHeight = 404
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
@@ -71,7 +69,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitHeight = 404
     end
   end
   object pnlRodape: TPanel
@@ -88,14 +85,16 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&NOVO'
       TabOrder = 0
+      OnClick = btnNovoClick
     end
-    object BitBtn2: TBitBtn
+    object btnAlterar: TBitBtn
       Left = 90
       Top = 7
       Width = 75
       Height = 25
       Caption = '&ALTERAR'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnCancelar: TBitBtn
       Left = 171
@@ -104,6 +103,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&CANCELAR'
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnGravar: TBitBtn
       Left = 252
@@ -112,6 +112,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&GRAVAR'
       TabOrder = 3
+      OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
       Left = 333
@@ -120,6 +121,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = 'APAGA&R'
       TabOrder = 4
+      OnClick = btnApagarClick
     end
     object btnFechar: TBitBtn
       Left = 685
