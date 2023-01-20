@@ -9,12 +9,13 @@ object dtmPrincipal: TdtmPrincipal
     Properties.Strings = (
       'controls_cp=CP_UTF16'
       'AutoEncodeStrings=True')
-    HostName = ''
+    Connected = True
+    HostName = '192.168.78.3\SQL_2019'
     Port = 0
-    Database = ''
-    User = ''
-    Password = ''
-    Protocol = ''
+    Database = 'Vendas_Ualas'
+    User = 'developer'
+    Password = '5759'
+    Protocol = 'mssql'
     LibraryLocation = 
       'C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso' +
       ' Delphi\ProjetoDelphi\ntwdblib.dll'

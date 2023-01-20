@@ -13,7 +13,9 @@ object frmTelaHeranca: TfrmTelaHeranca
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pgcPrincipal: TPageControl
@@ -30,12 +32,19 @@ object frmTelaHeranca: TfrmTelaHeranca
         Left = 0
         Top = 0
         Width = 764
-        Height = 42
+        Height = 57
         Align = alTop
         TabOrder = 0
+        object lblIndice: TLabel
+          Left = 3
+          Top = 5
+          Width = 75
+          Height = 13
+          Caption = 'CampoPesquisa'
+        end
         object mskPesquisar: TMaskEdit
           Left = 0
-          Top = 10
+          Top = 26
           Width = 282
           Height = 21
           TabOrder = 0
@@ -44,18 +53,18 @@ object frmTelaHeranca: TfrmTelaHeranca
         end
         object btnPesquisar: TBitBtn
           Left = 288
-          Top = 8
+          Top = 24
           Width = 97
-          Height = 25
+          Height = 27
           Caption = '&PESQUISAR'
           TabOrder = 1
         end
       end
       object grdListagem: TDBGrid
         Left = 0
-        Top = 42
+        Top = 57
         Width = 764
-        Height = 386
+        Height = 371
         Align = alClient
         DataSource = dtsListagem
         TabOrder = 1
@@ -64,6 +73,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnTitleClick = grdListagemTitleClick
       end
     end
     object tabManutencao: TTabSheet
@@ -107,7 +117,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     end
     object btnGravar: TBitBtn
       Left = 252
-      Top = 7
+      Top = 6
       Width = 75
       Height = 25
       Caption = '&GRAVAR'

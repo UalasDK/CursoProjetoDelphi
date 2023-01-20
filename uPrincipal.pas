@@ -76,11 +76,11 @@ begin
   //Fazendo assim poupamos tempo e código, a alternativa é o bloco comentado acima
   with dtmPrincipal.ConexaoDB do
   begin
-    SQLHourGlass := True;
+    SQLHourGlass := False;
     Protocol := 'mssql';
     LibraryLocation:='C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\ntwdblib.dll';
     HostName := '192.168.78.3\SQL_2019';
-    Port := 1433; //Creio ser necessário apenas para conexões com banco local
+    Port := 1433; //Creio ser necessário apenas para conexões com banco local, deixando 0 ele tentará pegar de forma automática
     User := 'developer';
     Password := '5759';
     Database := 'Vendas_Ualas';
