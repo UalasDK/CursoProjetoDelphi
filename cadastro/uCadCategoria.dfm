@@ -4,14 +4,6 @@ inherited frmCadCategoria: TfrmCadCategoria
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited TabSheet1: TTabSheet
-      inherited pnlListagemTopo: TPanel
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        inherited mskPesquisar: TMaskEdit
-          Height = 21
-          ExplicitHeight = 21
-        end
-      end
       inherited grdListagem: TDBGrid
         Columns = <
           item

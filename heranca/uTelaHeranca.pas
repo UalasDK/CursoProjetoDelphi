@@ -39,11 +39,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure grdListagemTitleClick(Column: TColumn);
+    procedure mskPesquisarChange(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro: TEstadoDoCadastro;
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar,btnGravar, btnApagar: TBitBtn; Navegador:TDBNavigator; pgcPrincipal: TPageControl; Flag: Boolean);
     function RetornarCampoTraduzido(Campo: string): string;
+    procedure ExibirLabelIndice(Campo: string; aLabel: TLabel);
   public
     { Public declarations }
     IndiceAtual: string;
@@ -56,7 +58,8 @@ implementation
 
 {$R *.dfm}
 
-
+//Esse comando (abaixo) interno do Delphi é muito útil para leitura, criamos uma região e podemos oculta-la inteira e expandi-la
+{$region 'FUNÇÕES E PROCEDURES'}
 procedure TfrmTelaHeranca.ControlarBotoes(btnNovo, btnAlterar, btnCancelar,btnGravar, btnApagar: TBitBtn; Navegador:TDBNavigator; pgcPrincipal: TPageControl; Flag: Boolean);
 begin
   btnNovo.Enabled := Flag;
@@ -80,12 +83,19 @@ Function TfrmTelaHeranca.RetornarCampoTraduzido (Campo: string) : string;
 var i:Integer;
 begin
   for i := 0 to QryListagem.Fields.Count-1 do begin
-    if QryListagem.Fields[i].FieldName = Campo then begin
+    //Utilizando lowercase para deixar mínusculo tnto o que vem por parametro quanto o que vem da field para evitar problemas de diferença por letras maíusculas e minusculas
+    if lowercase(QryListagem.Fields[i].FieldName) = lowercase(Campo) then begin
       Result := QryListagem.Fields[i].DisplayLabel;
       Break;
     end;
   end;
 end;
+
+procedure TfrmTelaHeranca.ExibirLabelIndice(Campo: string; aLabel: TLabel);
+begin
+  aLabel.Caption := RetornarCampoTraduzido(Campo);
+end;
+{$endregion}
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
@@ -147,20 +157,35 @@ begin
   qryListagem.Connection := dtmPrincipal.ConexaoDB;
   dtsListagem.DataSet := qryListagem;
   grdListagem.DataSource := dtsListagem;
+  grdListagem.Options := [dgTitles,dgIndicator,dgColumnResize,dgColLines,dgRowLines,dgTabs,dgRowSelect,dgAlwaysShowSelection,dgCancelOnExit,dgTitleClick,dgTitleHotTrack]
 end;
 
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
   if (QryListagem.SQL.Text <> EmptyStr) then begin
+    //Ordena pelo campo clicado
+    QryListagem.IndexFieldNames := IndiceAtual;
+    ExibirLabelIndice(IndiceAtual, lblIndice);
     QryListagem.Open;
   end;
+
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
   IndiceAtual := Column.FieldName;
   QryListagem.IndexFieldNames := IndiceAtual;
-  lblIndice.Caption := RetornarCampoTraduzido(IndiceAtual);
+  ExibirLabelIndice(IndiceAtual, lblIndice);
+end;
+
+procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
+begin
+  qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
+  //Abaixo o mesmo que a linha superior, proém um estou pegando pela classe o outro diretamente pelo componente
+  //Usando a classe temos a vantagem que em caso de mudança de nome do objeto o código não quebra, continua rodando sem necessidade de adaptações.
+  //O Sender indica qual objeto fez a chamada
+  //qryListagem.Locate(IndiceAtual, mskPesquisar.Text, [loPartialKey]);
 end;
 
 end.
