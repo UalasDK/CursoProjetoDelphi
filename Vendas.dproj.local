@@ -25,4 +25,20 @@
     <Transaction>2023/01/20 10:32:29.000.623,=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Unit1.pas</Transaction>
     <Transaction>2023/01/20 10:33:06.000.173,C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\Unit1.pas=C:\Users\konstroi.dev\OneDrive - Konstroi\Documentos\UALAS\Curso Delphi\ProjetoDelphi\heranca\uEnum.pas</Transaction>
   </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="cadastro"/>
+    <File Path="cadastro\uCadCategoria.pas"/>
+    <File Path="cadastro\uCadCategoria.dfm"/>
+    <File Path="datamodule"/>
+    <File Path="datamodule\uDTMConexao.pas"/>
+    <File Path="datamodule\uDTMConexao.dfm"/>
+    <File Path="heranca"/>
+    <File Path="heranca\uEnum.pas"/>
+    <File Path="heranca\uTelaHeranca.pas"/>
+    <File Path="heranca\uTelaHeranca.dfm"/>
+    <File Path="terceiros"/>
+    <File Path="terceiros\Enter.pas"/>
+    <File Path="uPrincipal.pas"/>
+    <File Path="uPrincipal.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>
