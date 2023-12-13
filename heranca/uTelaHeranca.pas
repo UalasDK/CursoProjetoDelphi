@@ -46,6 +46,7 @@ type
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar,btnGravar, btnApagar: TBitBtn; Navegador:TDBNavigator; pgcPrincipal: TPageControl; Flag: Boolean);
     function RetornarCampoTraduzido(Campo: string): string;
     procedure ExibirLabelIndice(Campo: string; aLabel: TLabel);
+    function ExisteCampoObrigatorio: Boolean;
   public
     { Public declarations }
     IndiceAtual: string;
@@ -98,6 +99,29 @@ procedure TfrmTelaHeranca.ExibirLabelIndice(Campo: string; aLabel: TLabel);
 begin
   aLabel.Caption := RetornarCampoTraduzido(Campo);
 end;
+
+function TfrmTelaHeranca.ExisteCampoObrigatorio : Boolean;
+var i : Integer;
+begin
+  Result := False;
+
+  //Verificando cada componente existente na tela
+  for i := 0 to ComponentCount -1 do
+  begin
+    result := False;
+    if (Components[i] is TLabeledEdit) then
+    begin
+      if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
+      begin
+        MessageDlg(TLabeledEdit(Components[i]).EditLabel.Caption + ' é um campo obrigatório', mtInformation, [mbOK], 0);
+        Result := True;
+        Break;
+      end;
+    end;
+  end;
+
+end;
+
 {$endregion}
 
 {$region 'MÉTODOS VIRTUAIS'}
@@ -192,7 +216,7 @@ begin
     ExibirLabelIndice(IndiceAtual, lblIndice);
     QryListagem.Open;
   end;
-
+  ControlarIndiceTab(pgcPrincipal,0);
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
 end;
 

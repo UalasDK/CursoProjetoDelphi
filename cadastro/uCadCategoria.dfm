@@ -3,7 +3,12 @@ inherited frmCadCategoria: TfrmCadCategoria
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ActivePage = tabManutencao
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inherited grdListagem: TDBGrid
         Columns = <
           item
@@ -18,6 +23,35 @@ inherited frmCadCategoria: TfrmCadCategoria
             Width = 365
             Visible = True
           end>
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 764
+      ExplicitHeight = 428
+      object edtCategoriaId: TLabeledEdit
+        Left = 32
+        Top = 88
+        Width = 121
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'C'#243'digo'
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 0
+      end
+      object edtDescricao: TLabeledEdit
+        Left = 32
+        Top = 144
+        Width = 465
+        Height = 21
+        EditLabel.Width = 46
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Descri'#231#227'o'
+        MaxLength = 30
+        TabOrder = 1
       end
     end
   end
