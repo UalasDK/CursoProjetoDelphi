@@ -114,6 +114,7 @@ begin
       if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
       begin
         MessageDlg(TLabeledEdit(Components[i]).EditLabel.Caption + ' é um campo obrigatório', mtInformation, [mbOK], 0);
+        TLabeledEdit(Components[i]).SetFocus;
         Result := True;
         Break;
       end;
@@ -176,23 +177,28 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
-    Try
-      if Gravar(EstadoDoCadastro) then
-      begin
-        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
-        ControlarIndiceTab(pgcPrincipal,0);
-      end;
+  if ExisteCampoObrigatorio then
+  begin
+    abort;
+  end;
 
-      if (EstadoDoCadastro = ecInserir) then
-        showmessage('Inserir')
-      else if (EstadoDoCadastro = ecAlterar) then
-        showmessage('Alterado')
-      else
-        showmessage('nada aconteceu');
+  Try
+    if Gravar(EstadoDoCadastro) then
+    begin
+      ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+      ControlarIndiceTab(pgcPrincipal,0);
+    end;
 
-    Finally
-      EstadoDoCadastro := ecNenhum;
-    End;
+    if (EstadoDoCadastro = ecInserir) then
+      showmessage('Inserir')
+    else if (EstadoDoCadastro = ecAlterar) then
+      showmessage('Alterado')
+    else
+      showmessage('nada aconteceu');
+
+  Finally
+    EstadoDoCadastro := ecNenhum;
+  End;
 end;
 
 procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);

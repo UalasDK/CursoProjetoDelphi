@@ -23,7 +23,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     Top = 0
     Width = 772
     Height = 456
-    ActivePage = TabSheet1
+    ActivePage = tabManutencao
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -82,10 +82,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
   end
   object pnlRodape: TPanel
