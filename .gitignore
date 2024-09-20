@@ -1,1 +1,7 @@
+# ARQUIVOS DE COMPILAÇÃO
 *.dcu
+
+# DELPHI HISTORY E BACKUPS
+__history
+__recovery
+*.~*

@@ -40,6 +40,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro: TEstadoDoCadastro;
@@ -47,6 +48,7 @@ type
     function RetornarCampoTraduzido(Campo: string): string;
     procedure ExibirLabelIndice(Campo: string; aLabel: TLabel);
     function ExisteCampoObrigatorio: Boolean;
+    procedure DesabilitarEditPK;
   public
     { Public declarations }
     IndiceAtual: string;
@@ -60,6 +62,10 @@ var
 implementation
 
 {$R *.dfm}
+{$region 'OBSERVAÇÕES'}
+  //TAG:1 - Chave Primária - PK
+  //TAG: 2 - Campos Obrigatórios
+{$endregion}
 
 //Esse comando (abaixo) interno do Delphi é muito útil para leitura, criamos uma região e podemos oculta-la inteira e expandi-la
 {$region 'FUNÇÕES E PROCEDURES'}
@@ -111,7 +117,7 @@ begin
     result := False;
     if (Components[i] is TLabeledEdit) then
     begin
-      if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
+      if (TLabeledEdit(Components[i]).Tag = 2) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
       begin
         MessageDlg(TLabeledEdit(Components[i]).EditLabel.Caption + ' é um campo obrigatório', mtInformation, [mbOK], 0);
         TLabeledEdit(Components[i]).SetFocus;
@@ -121,6 +127,20 @@ begin
     end;
   end;
 
+end;
+
+procedure TfrmTelaHeranca.DesabilitarEditPK;
+var i: Integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if (Components[i] is TLabeledEdit) then
+      if (TLabeledEdit(Components[i]).Tag = 1) then
+      begin
+        TLabeledEdit(Components[i]).Enabled := False;
+        Break;
+      end;
+  end;
 end;
 
 {$endregion}
@@ -138,6 +158,7 @@ begin
     ShowMessage('Inserir')
   else if (EstadoDoCadastro = ecAlterar) then
     ShowMessage('Alterado');
+  result := True; //Creio que isso aqui deve ter sido implementado e não vi, por tanto implementei por conta no final da aula 45
 end;
 {$endregion}
 
@@ -155,12 +176,28 @@ end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
+  {REFATURADO NA AULA 45
   if Excluir then
   begin
     ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
     ControlarIndiceTab(pgcPrincipal,0);
     EstadoDoCadastro := ecNenhum;
   end;
+  }
+
+  Try
+    if Excluir then
+    begin
+      ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+      ControlarIndiceTab(pgcPrincipal, 0);
+    end
+    else
+    begin
+      MessageDLG('Erro na Exclusão', mtError, [mbOK], 0);
+    end;
+  Finally
+    EstadoDoCadastro := ecNenhum;
+  End;
 end;
 
 procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
@@ -178,17 +215,16 @@ end;
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
   if ExisteCampoObrigatorio then
-  begin
     abort;
-  end;
 
   Try
     if Gravar(EstadoDoCadastro) then
     begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal,0);
-    end;
+    end
 
+    {REFATORADO NA AUTLA 45
     if (EstadoDoCadastro = ecInserir) then
       showmessage('Inserir')
     else if (EstadoDoCadastro = ecAlterar) then
@@ -198,6 +234,13 @@ begin
 
   Finally
     EstadoDoCadastro := ecNenhum;
+  }
+
+    else
+    begin
+      MessageDLG('Erro na gravação', mtError, [mbOK], 0);
+    end;
+  Finally
   End;
 end;
 
@@ -223,7 +266,13 @@ begin
     QryListagem.Open;
   end;
   ControlarIndiceTab(pgcPrincipal,0);
+  DesabilitarEditPK;
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+end;
+
+procedure TfrmTelaHeranca.grdListagemDblClick(Sender: TObject);
+begin
+  btnAlterar.Click;
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
