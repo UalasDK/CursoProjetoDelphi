@@ -49,6 +49,7 @@ type
     procedure ExibirLabelIndice(Campo: string; aLabel: TLabel);
     function ExisteCampoObrigatorio: Boolean;
     procedure DesabilitarEditPK;
+    procedure LimparEdits;
   public
     { Public declarations }
     IndiceAtual: string;
@@ -143,6 +144,19 @@ begin
   end;
 end;
 
+procedure TfrmTelaHeranca.LimparEdits;
+var i: Integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if (Components[i] is TLabeledEdit) then
+      TLabeledEdit(Components[i]).Text := EmptyStr //equivalente a ''
+    else if (Components[i] is TEdit) then
+      TEdit(Components[i]).Text := EmptyStr;
+
+  end;
+end;
+
 {$endregion}
 
 {$region 'MÉTODOS VIRTUAIS'}
@@ -166,6 +180,7 @@ procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro := ecInserir;
+  LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
@@ -190,6 +205,7 @@ begin
     begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
+      LimparEdits;
     end
     else
     begin
@@ -205,6 +221,7 @@ begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
   ControlarIndiceTab(pgcPrincipal,0);
   EstadoDoCadastro := ecNenhum;
+  LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
@@ -222,6 +239,8 @@ begin
     begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal,0);
+      EstadoDoCadastro := ecNenhum;
+      LimparEdits;
     end
 
     {REFATORADO NA AUTLA 45
